@@ -27,7 +27,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Create container image
-      run: docker build . -f Dockerfile -t altafmehmood/sampleapi:latest
+      run: docker build . -f Dockerfile -t ghcr.io/altafmehmood/sampleapi:latest
     - name: Docker login
       run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
     - name: Docker Push

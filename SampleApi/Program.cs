@@ -16,6 +16,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+var userName = "some name";
+var password = "somepassword";
+
+Console.WriteLine($"{userName} - {password}");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
