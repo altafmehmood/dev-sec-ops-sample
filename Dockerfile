@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore "SampleApi/SampleApi.csproj" --configfile nuget.config 
+RUN dotnet restore "SampleApi/SampleApi.csproj" 
 RUN dotnet build "SampleApi/SampleApi.csproj" -c Release -o /app/build --no-restore 
 RUN dotnet publish "SampleApi/SampleApi.csproj" -c Release -o /app/publish --no-restore 
 
