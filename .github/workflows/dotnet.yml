@@ -26,13 +26,4 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Build and push image to Docker Hub
-      run: |
-        docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
-        docker build . -f Dockerfile -t altafmehmood/sampleapi:latest
-        docker push altafmehmood/sampleapi:latest
-    - name: Build and push image to GHCR
-      run: |
-        docker login -u ${{secrets.GH_USERNAME}} -p ${{secrets.GH_PAT}} ghcr.io
-        docker build . -f Dockerfile -t ghcr.io/altafmehmood/sampleapi:latest
-        docker push ghcr.io/altafmehmood/sampleapi:latest
+
