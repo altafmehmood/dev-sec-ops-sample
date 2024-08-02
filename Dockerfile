@@ -1,5 +1,5 @@
 # Build Using SDK image
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY . .
 RUN dotnet restore "SampleApi/SampleApi.csproj" 
@@ -7,7 +7,7 @@ RUN dotnet build "SampleApi/SampleApi.csproj" -c Release -o /app/build --no-rest
 RUN dotnet publish "SampleApi/SampleApi.csproj" -c Release -o /app/publish --no-restore 
 
 # Final aspnet runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
 # Use non root port.
 EXPOSE 8080
