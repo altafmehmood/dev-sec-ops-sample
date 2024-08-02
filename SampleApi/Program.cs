@@ -16,10 +16,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-var userName = "some name";
+var user = "some name";
 var password = "somepassword";
 
-Console.WriteLine($"{userName} - {password}");
+Console.WriteLine($"{user} - {password}");
 
 app.UseHttpsRedirection();
 
@@ -28,3 +28,18 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+class WeakEncryption
+{
+    public static byte[] EncryptString()
+    {
+        System.Security.Cryptography.SymmetricAlgorithm serviceProvider = new System.Security.Cryptography.DESCryptoServiceProvider();
+        byte[] key = { 16, 22, 240, 11, 18, 150, 192, 21 };
+        serviceProvider.Key = key;
+        System.Security.Cryptography.ICryptoTransform encryptor = serviceProvider.CreateEncryptor();
+
+        String message = "Hello World";
+        byte[] messageB = System.Text.Encoding.ASCII.GetBytes(message);
+        return encryptor.TransformFinalBlock(messageB, 0, messageB.Length);
+    }
+}
